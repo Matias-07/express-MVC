@@ -10,4 +10,8 @@ router.get('/contacto', function(req,res) {
     res.send('Dejanos tu contacto')
 });
 
+router.get('/register', function (req,res) {
+    res.render('register'); 
+}); 
+
 module.exports = router; 

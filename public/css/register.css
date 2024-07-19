@@ -1,0 +1,16 @@
+*{
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.impar{
+    border-color: #000;
+}
+
+.par{
+    border-color: #22fcdf;
+}
+
+input {
+    margin: 5px;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
+    <title>register</title>
+</head>
+
+<body>
+    <form>
+        <label for="">Nombre</label>
+        <input type="text" name="Nombre" placeholder="Nombre">
+        <p>Hobbies</p>
+        <% for(let i=1; i < 11; i++) { %>
+            <label for=""> Hobbie <%= i%></label>
+            <% if (i % 2==0) { %>
+                <input type="text" name="Hobbies[]" class="par">
+                <% } else { %>
+                    <input type="text" name="Hobbies[]" class="inpar">
+                    <% } %>
+                        <br>
+                        <% } %>
+    </form>
+</body>
+
+</html>
