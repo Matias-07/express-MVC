@@ -1,4 +1,5 @@
 let express = require('express'); 
+let listControllers = require ('../controllers/listController.js')
 
 let router = express.Router(); 
 
@@ -13,5 +14,7 @@ router.get('/contacto', function(req,res) {
 router.get('/register', function (req,res) {
     res.render('register'); 
 }); 
+
+router.get('/list', listControllers.list)
 
 module.exports = router; 
