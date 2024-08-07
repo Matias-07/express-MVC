@@ -17,4 +17,6 @@ router.get('/register', function (req,res) {
 
 router.get('/list', listControllers.list)
 
+router.get('/search', listControllers.search)
+
 module.exports = router; 

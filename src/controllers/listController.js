@@ -8,8 +8,13 @@ let listControllers = {
                 { id: 6, name: 'gabriel' }
                 ]
                 res.render('userList', { 'users': users })
+        },
+        'search': function(req, res) {
+                let usersSearch = req.query;
+                res.send(usersSearch)
         }
 }
+
 
 
 module.exports = listControllers
