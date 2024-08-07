@@ -7,22 +7,30 @@
     <link rel="stylesheet" href="/css/register.css">
     <title>register</title>
 </head>
-<%- include('./partials/header.ejs') %> 
-<body>
-    <form>
-        <label for="">Nombre</label>
-        <input type="text" name="Nombre" placeholder="Nombre">
-        <p>Hobbies</p>
-        <% for(let i=1; i < 11; i++) { %>
-            <label for=""> Hobbie <%= i%></label>
-            <% if (i % 2==0) { %>
-                <input type="text" name="Hobbies[]" class="par">
-                <% } else { %>
-                    <input type="text" name="Hobbies[]" class="inpar">
-                    <% } %>
-                        <br>
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        <form action="/register" method="POST">
+            <label for="">Nombre</label>
+            <input type="text" name="nombre" placeholder="Nombre">
+            <p>Hobbies</p>
+            <% for(let i=1; i < 3; i++) { %>
+                <label for=""> Hobbie <%= i%></label>
+                <% if (i % 2==0) { %>
+                    <input type="text" name="Hobbies" class="par">
+                    <% } else { %>
+                        <input type="text" name="Hobbies" class="inpar">
                         <% } %>
-    </form>
-</body>
+                            <br>
+                            <% } %>
+                                <label for="">Edad</label>
+                                <input type="text" name="edad">
+                                <br>
+                                <label for="">Email</label>
+                                <input type="email" name="email">
+                                <br>
+                <button type="submit">Registrar</button>
+        </form>
+    </body>
 
 </html>

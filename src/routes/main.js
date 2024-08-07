@@ -15,6 +15,8 @@ router.get('/register', function (req,res) {
     res.render('register'); 
 }); 
 
+router.post('/register', listControllers.create)
+
 router.get('/list', listControllers.list)
 
 router.get('/search', listControllers.search)

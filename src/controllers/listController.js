@@ -20,19 +20,32 @@ let listControllers = {
                 { id: 6, name: 'gabriel' }
                 ];
 
-                let usersResults = []; 
+                let usersResults = [];
 
                 for (let i = 0; i < users.length; i++) {
                         if (users[i].name.includes(usersSearch)) {
-                                usersResults.push(users[i]); 
+                                usersResults.push(users[i]);
                         }
                 }
 
-                res.render('userResults', {usersResults: usersResults})
+                res.render('userResults', { usersResults: usersResults })
 
+        },
+        'create': function (req, res) {
+                let user = {
+                        nombre: req.body.nombre,
+                        Hobbie_1: req.body.Hobbies[0],
+                        Hobbie_2: req.body.Hobbies[1],
+                        Edad: req.body.edad,
+                        mail: req.body.email,
+                }
+                
+                //save it
+
+                res.redirect('/list');
         }
 }
 
 
 
-module.exports = listControllers
+module.exports = listControllers 
