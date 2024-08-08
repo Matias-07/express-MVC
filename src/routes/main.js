@@ -24,7 +24,11 @@ router.get('/search', listControllers.search)
 router.get('/edit/:idUser', listControllers.edit)
 
 router.put('/edit', function(req,res){
-    res.send('Estoy en PUT!')
+    res.send('Estoy en PUT!');
+});
+
+router.delete('/delete/:idUser', function(req,res){
+    res.send('Viajo por Delete');
 })
 
 module.exports = router; 
