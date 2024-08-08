@@ -21,4 +21,6 @@ router.get('/list', listControllers.list)
 
 router.get('/search', listControllers.search)
 
+router.get('/edit/:idUser', listControllers.edit)
+
 module.exports = router; 
