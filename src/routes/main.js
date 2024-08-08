@@ -23,4 +23,8 @@ router.get('/search', listControllers.search)
 
 router.get('/edit/:idUser', listControllers.edit)
 
+router.put('/edit', function(req,res){
+    res.send('Estoy en PUT!')
+})
+
 module.exports = router; 
