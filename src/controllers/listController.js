@@ -1,3 +1,5 @@
+let fs = require('fs')
+
 let listControllers = {
         'list': function (req, res) {
                 let users = [{ id: 1, name: 'Dario' },
@@ -32,15 +34,19 @@ let listControllers = {
 
         },
         'create': function (req, res) {
+                
+                
                 let user = {
                         nombre: req.body.nombre,
-                        Hobbie_1: req.body.Hobbies[0],
-                        Hobbie_2: req.body.Hobbies[1],
+                        Hobbie_1: req.body.Hobbie_1,
+                        Hobbie_2: req.body.Hobbie_2,
                         Edad: req.body.edad,
                         mail: req.body.email,
                 }
                 
-                //save it
+                let UserJSON = JSON.stringify(user); 
+
+                fs.writeFileSync('usuarios.json', UserJSON )
 
                 res.redirect('/list');
         },
