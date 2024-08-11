@@ -2,25 +2,19 @@ let fs = require('fs')
 
 let listControllers = {
         'list': function (req, res) {
-                let users = [{ id: 1, name: 'Dario' },
-                { id: 2, name: 'Javier' },
-                { id: 3, name: 'Matias' },
-                { id: 4, name: 'Agustin' },
-                { id: 5, name: 'silvana' },
-                { id: 6, name: 'gabriel' }
-                ]
+                let archivoJSON = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
+
+                let users = JSON.parse(archivoJSON);
+
                 res.render('userList', { 'users': users })
         },
         'search': function (req, res) {
-                let usersSearch = req.query.search;
 
-                let users = [{ id: 1, name: 'Dario' },
-                { id: 2, name: 'Javier' },
-                { id: 3, name: 'Matias' },
-                { id: 4, name: 'Agustin' },
-                { id: 5, name: 'silvana' },
-                { id: 6, name: 'gabriel' }
-                ];
+                let usersSearch = req.query.search;
+              
+                let archivoJSON = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
+
+                let users = JSON.parse(archivoJSON);
 
                 let usersResults = [];
 
@@ -34,8 +28,7 @@ let listControllers = {
 
         },
         'create': function (req, res) {
-                
-                
+
                 let user = {
                         nombre: req.body.nombre,
                         Hobbie_1: req.body.Hobbie_1,
@@ -43,30 +36,34 @@ let listControllers = {
                         Edad: req.body.edad,
                         mail: req.body.email,
                 }
-                
-                let UserJSON = JSON.stringify(user); 
 
-                fs.writeFileSync('usuarios.json', UserJSON )
+                let archivoUsuarios = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
+                let usuarios;
+                if (archivoUsuarios === '') {
+                        usuarios = [];
+                } else {
+                        usuarios = JSON.parse(archivoUsuarios)
+                }
+
+                usuarios.push(user);
+
+                usuariosJSON = JSON.stringify(usuarios)
+
+                fs.writeFileSync('usuarios.json', usuariosJSON)
 
                 res.redirect('/list');
         },
-        'edit': function(req,res) {
-               let idUser = req.params.idUser; 
+        'edit': function (req, res) {
+                let idUser = req.params.idUser;
+                
+                let archivoJSON = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
 
-               let users = [{ id: 1, name: 'Dario' },
-                { id: 2, name: 'Javier' },
-                { id: 3, name: 'Matias' },
-                { id: 4, name: 'Agustin' },
-                { id: 5, name: 'silvana' },
-                { id: 6, name: 'gabriel' }
-                ];
+                let users = JSON.parse(archivoJSON);
 
                 let userToEdit = users[idUser]
 
-                res.render('userEdit', {userToEdit: userToEdit}); 
-        } 
-}; 
-
-
+                res.render('userEdit', { userToEdit: userToEdit });
+        }
+};
 
 module.exports = listControllers 

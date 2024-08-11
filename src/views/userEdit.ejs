@@ -10,10 +10,10 @@
 <%- include('./partials/header.ejs') %>
 
     <body>
-        <h1>Editing user: <%= userToEdit.name %></h1>
+        <h1>Editing user: <%= userToEdit.nombre %></h1>
         <form action="/edit?_method=PUT" method="POST">
             <label for="">Nombre</label>
-            <input type="text" name="nombre" value="<%= userToEdit.name %>">
+            <input type="text" name="nombre" value="<%= userToEdit.nombre %>">
                 <button type="submit">Editar</button>
         </form>
     </body>
