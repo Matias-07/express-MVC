@@ -11,7 +11,7 @@ let listControllers = {
         'search': function (req, res) {
 
                 let usersSearch = req.query.search;
-              
+
                 let archivoJSON = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
 
                 let users = JSON.parse(archivoJSON);
@@ -29,33 +29,40 @@ let listControllers = {
         },
         'create': function (req, res) {
 
-                let user = {
-                        nombre: req.body.nombre,
-                        Hobbie_1: req.body.Hobbie_1,
-                        Hobbie_2: req.body.Hobbie_2,
-                        Edad: req.body.edad,
-                        mail: req.body.email,
-                }
+                if (req.file) {
 
-                let archivoUsuarios = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
-                let usuarios;
-                if (archivoUsuarios === '') {
-                        usuarios = [];
+                        let user = {
+                                nombre: req.body.nombre,
+                                Hobbie_1: req.body.Hobbie_1,
+                                Hobbie_2: req.body.Hobbie_2,
+                                Edad: req.body.edad,
+                                mail: req.body.email,
+                                image: req.file.filename,
+                        }
+
+                        let archivoUsuarios = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
+                        let usuarios;
+                        if (archivoUsuarios === '') {
+                                usuarios = [];
+                        } else {
+                                usuarios = JSON.parse(archivoUsuarios)
+                        }
+
+                        usuarios.push(user);
+
+                        usuariosJSON = JSON.stringify(usuarios)
+
+                        fs.writeFileSync('usuarios.json', usuariosJSON)
+
+                        res.redirect('/list');
                 } else {
-                        usuarios = JSON.parse(archivoUsuarios)
+                        res.redirect('/register');
                 }
 
-                usuarios.push(user);
-
-                usuariosJSON = JSON.stringify(usuarios)
-
-                fs.writeFileSync('usuarios.json', usuariosJSON)
-
-                res.redirect('/list');
         },
         'edit': function (req, res) {
                 let idUser = req.params.idUser;
-                
+
                 let archivoJSON = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
 
                 let users = JSON.parse(archivoJSON);
