@@ -10,7 +10,7 @@
 <%- include('./partials/header.ejs') %>
 
     <body>
-        <form action="/register" method="POST">
+        <form action="/register" method="POST" enctype="multipart/form-data">  
             <label for="">Nombre</label>
             <input type="text" name="nombre" placeholder="Nombre">
             <p>Hobbies</p>
@@ -28,6 +28,9 @@
                                 <br>
                                 <label for="">Email</label>
                                 <input type="email" name="email">
+                                <br>
+                                <label for="">Imagen de usuario:</label>
+                                <input type="file" name="imagenUsuario" accept=".png, .jpg, .jpeg" required>
                                 <br>
                 <button type="submit">Registrar</button>
         </form>
